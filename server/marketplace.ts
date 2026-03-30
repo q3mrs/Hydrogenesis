@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { FastifyInstance, FastifyRequest } from "fastify";
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 import { parsedDoc } from "./config.js";
-
+import Database from 'better-sqlite3';
 // YENİ
 const db = new Sequelize(parsedDoc.db.name, parsedDoc.db.username, parsedDoc.db.password, {
     host: parsedDoc.db.postgres ? `${parsedDoc.postgres.domain}` : "localhost",
@@ -13,7 +13,7 @@ const db = new Sequelize(parsedDoc.db.name, parsedDoc.db.username, parsedDoc.db.
     dialect: parsedDoc.db.postgres ? "postgres" : "sqlite",
     logging: parsedDoc.server.server.logging,
     storage: "database.sqlite",
-    dialectModule: parsedDoc.db.postgres ? undefined : require('better-sqlite3')
+    dialectModule: parsedDoc.db.postgres ? undefined : Database  // ← bunu ekle
 });
 
 type CatalogType = "theme" | "plugin-page" | "plugin-sw";
