@@ -12,7 +12,7 @@ import { defineConfig, envField } from "astro/config";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { version } from "./package.json";
 import { parsedDoc } from "./server/config.js";
-const workerwarePath = "/app/workerware_new/src";
+const workerwarePath = fileURLToPath(new URL("./workerware_new/src", import.meta.url));
 
 export default defineConfig({
     site: parsedDoc.seo.enabled ? parsedDoc.seo.domain || process.env.SITE : 'http://localhost:4321',
@@ -65,7 +65,7 @@ export default defineConfig({
             viteStaticCopy({
                 targets: [
                     {
-                        src: "/app/public/uv/**/*".replace(/\\/g, "/"),
+                        src: fileURLToPath(new URL("./public/uv/**/*", import.meta.url)),
                         dest: "uv",
                         overwrite: false
                     },
