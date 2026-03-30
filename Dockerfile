@@ -2,16 +2,20 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json .
+# install build tools for any native modules
+RUN apk update && \
+    apk add python3 py3-pip alpine-sdk openssl-dev build-base python3-dev
+
+# install pnpm and dependencies
+COPY package*.json pnpm-lock.yaml* ./
+RUN npm i -g pnpm && pnpm install
+
+# copy the rest of your code (including your manual public/uv folder)
 COPY . .
 
-RUN apk update
-RUN apk add python3 py3-pip alpine-sdk openssl-dev build-base python3-dev
-RUN python3 -m pip install setuptools --break-system-packages
-RUN npm i -g pnpm
-RUN pnpm install
+# run the build - this is where it was failing
 RUN pnpm run build
-RUN export TERM=xterm-256color
+
 EXPOSE 8080
 ENTRYPOINT ["pnpm"]
 CMD ["start", "--color"]
