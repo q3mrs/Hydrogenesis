@@ -1,6 +1,12 @@
 <div align="center">
          
+<img src="https://socialify.git.ci/nebulaservices/nebula/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark" alt="ruby" width="640" height="320" />
 
+<img alt="repo size" src="https://img.shields.io/github/repo-size/nebulaservices/nebula?style=for-the-badge"></img>
+<img alt="website status" src="https://img.shields.io/website?url=https%3A%2F%2Fnebulaproxy.io&style=for-the-badge"></img>
+<img alt="commit a week" src="https://img.shields.io/github/commit-activity/w/nebulaservices/nebula?style=for-the-badge"></img>
+
+</div>
 
 <div align="center">
     <h2>Get Started</h2>
