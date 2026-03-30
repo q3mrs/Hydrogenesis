@@ -12,7 +12,7 @@ import { defineConfig, envField } from "astro/config";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { version } from "./package.json";
 import { parsedDoc } from "./server/config.js";
-const workerwarePath = "/app/workerware/src";
+const workerwarePath = "/app/workerware_new/src";
 
 export default defineConfig({
     site: parsedDoc.seo.enabled ? parsedDoc.seo.domain || process.env.SITE : 'http://localhost:4321',
