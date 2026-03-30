@@ -6,12 +6,14 @@ import { FastifyInstance, FastifyRequest } from "fastify";
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 import { parsedDoc } from "./config.js";
 
+// YENİ
 const db = new Sequelize(parsedDoc.db.name, parsedDoc.db.username, parsedDoc.db.password, {
     host: parsedDoc.db.postgres ? `${parsedDoc.postgres.domain}` : "localhost",
     port: parsedDoc.db.postgres ? parsedDoc.postgres.port : null,
     dialect: parsedDoc.db.postgres ? "postgres" : "sqlite",
     logging: parsedDoc.server.server.logging,
-    storage: "database.sqlite" //this is sqlite only
+    storage: "database.sqlite",
+    dialectModule: parsedDoc.db.postgres ? undefined : require('better-sqlite3')
 });
 
 type CatalogType = "theme" | "plugin-page" | "plugin-sw";

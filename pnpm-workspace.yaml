@@ -1,6 +1,7 @@
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@mercuryworkshop/scramjet'
+  - better-sqlite3
   - bufferutil
   - esbuild
   - sharp
