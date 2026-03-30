@@ -12,7 +12,6 @@ RUN npm i -g pnpm && pnpm install
 COPY . .
 
 # CRITICAL: Pull the actual files for workerware
-RUN git submodule update --init --recursive
 
 # Now the files exist, so the build won't fail
 RUN cp config.example.toml config.toml
