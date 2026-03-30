@@ -9,7 +9,7 @@ RUN npm i -g pnpm && pnpm install
 
 # 2. force rebuild specifically using the container's environment
 # we add --build-from-source to ensure it ignores any pre-built windows/linux binaries
-RUN pnpm rebuild sqlite3 --build-from-source
+RUN npm_config_build_from_source=true pnpm rebuild sqlite3
 
 COPY . .
 
