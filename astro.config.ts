@@ -6,7 +6,6 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import playformCompress from "@playform/compress";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { scramjetPath } from "@mercuryworkshop/scramjet/path";
 import icon from "astro-icon";
 import { defineConfig, envField } from "astro/config";
@@ -66,7 +65,7 @@ export default defineConfig({
             viteStaticCopy({
                 targets: [
                     {
-                        src: `${uvPath}/**/*`.replace(/\\/g, "/"),
+                        src: "/app/public/uv/**/*".replace(/\\/g, "/"),
                         dest: "uv",
                         overwrite: false
                     },
