@@ -1,19 +1,22 @@
 FROM node:22-alpine
 WORKDIR /app
 
-# Add git so we can pull the submodule files
+# we need these extra tools to compile sqlite3 from source
 RUN apk update && \
-    apk add python3 py3-pip alpine-sdk openssl-dev build-base python3-dev git
+    apk add --no-network --no-cache python3 py3-pip alpine-sdk openssl-dev build-base python3-dev
 
 COPY package*.json pnpm-lock.yaml* ./
 RUN npm i -g pnpm && pnpm install
 
-# Copy everything including the .gitmodules file
+# --- ADD THIS LINE HERE ---
+# this fixes the "bindings.js" and "node_sqlite3.node" error
+RUN pnpm rebuild sqlite3
+
 COPY . .
 
-# CRITICAL: Pull the actual files for workerware
+# verify your workerware files are still there
+RUN ls -la /app/workerware_new/src
 
-# Now the files exist, so the build won't fail
 RUN cp config.example.toml config.toml
 RUN pnpm run build
 
